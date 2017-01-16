@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Heures.java              Auteur: Herimanitra RANAIVOSON/INF1002-HW1
+// Heures.java              Auteur: Herimanitra RANAIVOSON, COURS:INF1002-HW1
 //lecture du nombre de secondes et affichage en hh-mn-sec 
 //*****************************************************************************
 
@@ -14,6 +14,7 @@ public class Heures {
 	static long minutes;
 	static int secondes;
 	static String monMessage;
+	public static final double  SECONDS = 3600.;  
 	
 	
 	
@@ -22,7 +23,7 @@ public class Heures {
 		reader = new Scanner(System.in);  
 		System.out.println("Enter a number: "); 
 		int nb = reader.nextInt();
-		double nb_h= nb/3600.;
+		double nb_h= nb/SECONDS;
 		
 		//separe heure(s) et minute(s):
 		heures = (long) nb_h;
@@ -39,7 +40,7 @@ public class Heures {
 		
 		//affichage du resultat:
 		monMessage = nb + " secondes contiennent ";
-		monMessage += heures + "heure(s), "+ minutes + "minute(s), " + secondes + "seconde(s)";
+		monMessage += heures + " heure(s), "+ minutes + " minute(s), " + secondes + " seconde(s)";
 		System.out.println(monMessage);
 	}
 	
