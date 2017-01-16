@@ -10,7 +10,7 @@ public class Heures {
 	//declaration des variables:
 	private static Scanner reader;
 	static long heures;
-	static double Nbtemp;
+	static double nbTemp;
 	static long minutes;
 	static int secondes;
 	static String monMessage;
@@ -29,13 +29,13 @@ public class Heures {
 		heures = (long) nb_h;
 		
 		//récupère minute(s)
-		Nbtemp = 60*(nb_h - heures);
+		nbTemp = 60*(nb_h - heures);
 		
 		//sépare minute(s) et seconde(s):
-		minutes = (long) Nbtemp;
+		minutes = (long) nbTemp;
 		
 		//récupère et arrondi seconde(s):
-		secondes = (int) Math.round(60*(Nbtemp - minutes));
+		secondes = (int) Math.round(60*(nbTemp - minutes));
 		
 		
 		//affichage du resultat:
