@@ -14,7 +14,7 @@ public class Heures {
 	static long minutes;
 	static int secondes;
 	static String monMessage;
-	public static final double  SECONDS = 3600.;  
+	public static final double  nbSeconds = 3600.;  
 	
 	
 	
@@ -22,8 +22,8 @@ public class Heures {
 		//lecture input de l'user:
 		reader = new Scanner(System.in);  
 		System.out.println("Enter a number: "); 
-		int nb = reader.nextInt();
-		double nb_h= nb/SECONDS;
+		int input = reader.nextInt();
+		double nb_h= input/nbSeconds;
 		
 		//separe heure(s) et minute(s):
 		heures = (long) nb_h;
@@ -39,7 +39,7 @@ public class Heures {
 		
 		
 		//affichage du resultat:
-		monMessage = nb + " secondes contiennent ";
+		monMessage = input + " secondes contiennent ";
 		monMessage += heures + " heure(s), "+ minutes + " minute(s), " + secondes + " seconde(s)";
 		System.out.println(monMessage);
 	}
