@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Heures {
 	
 	//declaration des variables:
-	private static Scanner reader;
+	private static Scanner scan;
 	private static long heures;
 	private static double nbTemp;
 	private static long minutes;
@@ -17,12 +17,11 @@ public class Heures {
 	private static final double  NBSECONDS = 3600.;  
 	
 	
-	
 	public static void main(String[] args) {
 		//lecture input de l'user:
-		reader = new Scanner(System.in);  
+		scan = new Scanner(System.in);  
 		System.out.println("Entrez le nombre de secondes: "); 
-		int input = reader.nextInt();
+		int input = scan.nextInt();
 		double nb_h= input/NBSECONDS;
 		
 		//separe heure(s) et minute(s):
