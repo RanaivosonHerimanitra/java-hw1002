@@ -9,21 +9,21 @@ public class Heures {
 	
 	//declaration des variables:
 	private static Scanner reader;
-	static long heures;
-	static double nbTemp;
-	static long minutes;
-	static int secondes;
-	static String monMessage;
-	public static final double  nbSeconds = 3600.;  
+	private static long heures;
+	private static double nbTemp;
+	private static long minutes;
+	private static int secondes;
+	private static String monMessage;
+	private static final double  NBSECONDS = 3600.;  
 	
 	
 	
 	public static void main(String[] args) {
 		//lecture input de l'user:
 		reader = new Scanner(System.in);  
-		System.out.println("Enter a number: "); 
+		System.out.println("Entrez le nombre de secondes: "); 
 		int input = reader.nextInt();
-		double nb_h= input/nbSeconds;
+		double nb_h= input/NBSECONDS;
 		
 		//separe heure(s) et minute(s):
 		heures = (long) nb_h;
