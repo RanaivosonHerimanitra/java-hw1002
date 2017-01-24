@@ -13,7 +13,7 @@ public class Ecole {
 	private static String nomEcole;
 	private static String nomVille;
 	private static int nbEleve;
-	private static Date annee;
+	private static Date anneeCrea;
 	public enum Type  {primaire, secondaire, specialise};
 	private static Type type;    
 	//
@@ -25,7 +25,7 @@ public class Ecole {
 		nomVille="trois-rivieres";
 		nbEleve=10000;
 		SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		annee= DateFormat.parse("2016-01-01");
+		anneeCrea= DateFormat.parse("2016-01-01");
 		type = Type.secondaire;
 	}
 	
@@ -71,12 +71,13 @@ public class Ecole {
 		return nbEleve;
 	}
 	
+	//Il faudrait un setAnneeCrea pour tester....
 	
 	//-----------------------------------------------------------------------------
 	//Accesseur pour la variable: annee de creation
 	//-----------------------------------------------------------------------------
-	public Date getAnnee() {
-		return annee;
+	public Date getAnneeCrea() {
+		return anneeCrea;
 	}
 	
 	
@@ -102,8 +103,11 @@ public class Ecole {
 	public static void main(String[] args) throws ParseException {
 		Ecole myecole = new Ecole();
 		System.out.println( myecole.toString(10) );
-		System.out.println( myecole.getAnnee() );
+		System.out.println( myecole.getAnneeCrea() );
 		myecole.setNbEleve(15000) ;
 		System.out.println(myecole.getNbEleve() );
+		System.out.println( myecole.getType() );
+		myecole.setType(Type.primaire);
+		System.out.println( myecole.getType() );
 	}
 }
