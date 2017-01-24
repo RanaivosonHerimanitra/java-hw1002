@@ -9,83 +9,94 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Ecole {
-	// variable d instance:
-	private static String nom;
-	private static String ville;
+	// variable d'instance:
+	private static String nomEcole;
+	private static String nomVille;
 	private static int nbEleve;
 	private static Date annee;
-	enum Type  {primaire, secondaire, specialise}
+	public enum Type  {primaire, secondaire, specialise};
+	private static Type type;    
 	//
 	//---------------------------------
 	//Constructeur pour la classe Ecole:
 	//---------------------------------
 	public Ecole() throws ParseException  {
-		nom = "uqtr";
-		ville="trois-rivieres";
+		nomEcole = "uqtr";
+		nomVille="trois-rivieres";
 		nbEleve=10000;
 		SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		annee= DateFormat.parse("2016-01-01");
-		Type mytype = Type.secondaire;
+		type = Type.secondaire;
 	}
 	
-	//--------------------------
+	//------------------------------------------------------------------------------
 	//Mutateur pour le nom de l'ecole
-	//-------------------------
-	public void setNom (String value) {
-		nom= value;
+	//-----------------------------------------------------------------------------
+	public void setNomEcole (String value) {
+		nomEcole= value;
 	}
 		
-	//--------------------------
+	//------------------------------------------------------------------------------
 	//Accesseur pour le nom d'ecole
-	//------------------------
-	public String getNom() {
-		return nom;
+	//----------------------------------------------------------------------------
+	public String getNomEcole() {
+		return nomEcole;
 	}
 	
-	//--------------------------
+	//------------------------------------------------------------------------------
 	//Mutateur pour le nom de ville
-	//-------------------------
-	public void setVille (String value) {
-		ville= value;
+	//-----------------------------------------------------------------------------
+	public void setNomVille (String value) {
+		nomVille= value;
 	}
 	
-	//--------------------------
+	//------------------------------------------------------------------------------
 	//Accesseur pour le nom de la ville
-	//------------------------
-	public String getVille() {
-		return ville;
+	//----------------------------------------------------------------------------
+	public String getNomVille() {
+		return nomVille;
 	}
 		
-	//--------------------------
+	//------------------------------------------------------------------------------
 	//Mutateur pour le Nb. Elèves
-	//-------------------------
+	//-----------------------------------------------------------------------------
 	public void setNbEleve (int value) {
 		nbEleve= value;
 	}
 	
-	//--------------------------
+	//------------------------------------------------------------------------------
 	//Accesseur pour le Nb. Elèves
-	//------------------------
+	//----------------------------------------------------------------------------
 	public int getNbEleve() {
 		return nbEleve;
 	}
 	
 	
-	//-------------------------
-	//Accesseur pour la variable: annee
-	//-------------------------
+	//-----------------------------------------------------------------------------
+	//Accesseur pour la variable: annee de creation
+	//-----------------------------------------------------------------------------
 	public Date getAnnee() {
 		return annee;
 	}
 	
 	
 	
-	//-------------------------------
-	// méthode conversion en string:
-	//-------------------------------
+	//------------------------------------------------------------------------------
+	// méthode conversion en string: (A REVOIR CAR DEVRAIT PRENDRE TOUS LES VAR)
+	//------------------------------------------------------------------------------
 	public String toString (int input) {
 		return String.valueOf(input);
 	}
+	
+	//-----------------------------------------------
+	// Accesseur pour le Type de programme de l'école
+	//-----------------------------------------------
+	public Type getType() {
+		return type; 
+	}
+	public void setType(Type type) {
+		Ecole.type = type;
+	}   
 	
 	//Test des methodes de la classe:
 	public static void main(String[] args) throws ParseException {
