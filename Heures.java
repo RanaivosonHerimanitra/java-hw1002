@@ -10,7 +10,7 @@ public class Heures {
 	//declaration des variables:
 	private static Scanner scan;
 	private static long heures;
-	private static double nbTemp;
+	private static double nbTemporaire;
 	private static long minutes;
 	private static int secondes;
 	private static String monMessage;
@@ -21,24 +21,24 @@ public class Heures {
 		//lecture input de l'user:
 		scan = new Scanner(System.in);  
 		System.out.println("Entrez le nombre de secondes: "); 
-		int input = scan.nextInt();
-		double nb_h= input/NBSECONDS;
+		int userInput = scan.nextInt();
+		double nb_h= userInput/NBSECONDS;
 		
-		//separe heure(s) et minute(s):
+		//separe heure(s) et minute(s) par le cast :
 		heures = (long) nb_h;
 		
 		//récupère minute(s)
-		nbTemp = 60*(nb_h - heures);
+		nbTemporaire = 60*(nb_h - heures);
 		
-		//sépare minute(s) et seconde(s):
-		minutes = (long) nbTemp;
+		//sépare minute(s) et seconde(s) par le cast:
+		minutes = (long) nbTemporaire;
 		
-		//récupère et arrondi seconde(s):
-		secondes = (int) Math.round(60*(nbTemp - minutes));
+		//récupère et arrondi seconde(s) par le cast:
+		secondes = (int) Math.round(60*(nbTemporaire - minutes));
 		
 		
 		//affichage du resultat:
-		monMessage = input + " secondes contiennent ";
+		monMessage = userInput + " secondes contiennent ";
 		monMessage += heures + " heure(s), "+ minutes + " minute(s), " + secondes + " seconde(s)";
 		System.out.println(monMessage);
 	}
