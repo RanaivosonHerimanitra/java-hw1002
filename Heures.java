@@ -24,16 +24,16 @@ public class Heures {
 		int userInput = scan.nextInt();
 		double nb_h= userInput/NBSECONDS;
 		
-		//separe heure(s) et minute(s) par le cast :
+		//separe heures et minutes par le cast :
 		heures = (long) nb_h;
 		
-		//récupère minute(s)
+		//récupère minutes
 		nbTemporaire = 60*(nb_h - heures);
 		
-		//sépare minute(s) et seconde(s) par le cast:
+		//sépare minutes et secondes par le cast:
 		minutes = (long) nbTemporaire;
 		
-		//récupère et arrondi seconde(s) par le cast:
+		//récupère et arrondi secondes par le cast:
 		secondes = (int) Math.round(60*(nbTemporaire - minutes));
 		
 		
