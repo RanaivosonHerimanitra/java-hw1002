@@ -15,7 +15,8 @@ public class Ecole {
 	private static int nbEleve;
 	private static Date anneeCreation;
 	private enum Type  {primaire, secondaire, specialise};
-	private Type type;    
+	private Type type;
+	private Ecole myecole;    
 	
 	//---------------------------------------------------------------
 	//Constructeur pour la classe Ecole:
@@ -53,9 +54,19 @@ public class Ecole {
 	//--------------------------------------------------------------------
 	// méthode conversion en String de n'importe quelle var.
 	//--------------------------------------------------------------------
-	public String toString (Object input) {
-		//return String.valueOf(input);
-		return input.toString();
+	public String toString () {
+		//est-ce correct?
+		try {
+			this.myecole = new Ecole();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String myMsg="Nom de l\'Ecole: "+ myecole.getNomEcole() + "\n";
+		myMsg +="Nom de la Ville: "+ myecole.getNomVille() + "\n";
+		myMsg += "Conversion Type Etab.: "+ myecole.type + "\n";
+		myMsg += "Conversion Annee Crea.: "+ myecole.getAnneeCreation();
+		return myMsg;
 	} 
 	
 	//--------------------------------------------------------------------
@@ -85,12 +96,9 @@ public class Ecole {
 		//voir le changement:
 		System.out.println("Nb. Eleve apres mutation: " + myecole.getNbEleve()) ;
 		
-		//conversion en String de n'importe quelle variable de la classe:
-		System.out.println( "Conversion nom Ecole: "+ myecole.toString(myecole.getNomEcole()) );
-		System.out.println( "Conversion nom Ville: "+ myecole.toString(myecole.getNomVille()) );
-		System.out.println( "Conversion Type Etab.: "+ myecole.toString(myecole.type));
-		System.out.println( "Conversion Annee Crea.: "+ myecole.toString(myecole.getAnneeCreation()));
-		
+		//test de la methode toString:
+		System.out.println(myecole.toString());
+
 		
 	}
 }
