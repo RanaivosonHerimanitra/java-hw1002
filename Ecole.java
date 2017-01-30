@@ -1,6 +1,6 @@
 //*****************************************************************************
 // Ecole.java              Auteur: Herimanitra RANAIVOSON, COURS:INF1002-HW2
-//Réalisation d'une classe Ecole avec des methodes
+//Réalisation d'une classe Ecole avec des methodes et tests de ces methodes
 //*****************************************************************************
 
 
@@ -13,101 +13,85 @@ public class Ecole {
 	private static String nomEcole;
 	private static String nomVille;
 	private static int nbEleve;
-	private static Date anneeCrea;
-	public enum Type  {primaire, secondaire, specialise};
-	private static Type type;    
-	//
-	//---------------------------------
+	private static Date anneeCreation;
+	private enum Type  {primaire, secondaire, specialise};
+	private Type type;    
+	
+	//---------------------------------------------------------------
 	//Constructeur pour la classe Ecole:
-	//---------------------------------
+	//---------------------------------------------------------------
 	public Ecole() throws ParseException  {
 		nomEcole = "uqtr";
 		nomVille="trois-rivieres";
 		nbEleve=10000;
-		SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		anneeCrea= DateFormat.parse("2016-01-01");
+		SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-mm-dd");
+		anneeCreation= DateFormat.parse("2016-01-01");
 		type = Type.secondaire;
 	}
 	
-	//------------------------------------------------------------------------------
-	//Mutateur pour le nom de l'ecole
-	//-----------------------------------------------------------------------------
-	public void setNomEcole (String value) {
-		nomEcole= value;
-	}
-		
-	//------------------------------------------------------------------------------
-	//Accesseur pour le nom d'ecole
-	//----------------------------------------------------------------------------
-	public String getNomEcole() {
-		return nomEcole;
-	}
-	
-	//------------------------------------------------------------------------------
-	//Mutateur pour le nom de ville
-	//-----------------------------------------------------------------------------
-	public void setNomVille (String value) {
-		nomVille= value;
-	}
-	
-	//------------------------------------------------------------------------------
-	//Accesseur pour le nom de la ville
-	//----------------------------------------------------------------------------
-	public String getNomVille() {
-		return nomVille;
-	}
-		
-	//------------------------------------------------------------------------------
+	//-------------------------------------------------------------------
 	//Mutateur pour le Nb. Elèves
-	//-----------------------------------------------------------------------------
+	//-------------------------------------------------------------------
 	public void setNbEleve (int value) {
 		nbEleve= value;
 	}
 	
-	//------------------------------------------------------------------------------
-	//Accesseur pour le Nb. Elèves
-	//----------------------------------------------------------------------------
+	//--------------------------------------------------------------------
+	//Accesseur pour le Nb. Elèves (pour tester dans Main)
+	//--------------------------------------------------------------------
 	public int getNbEleve() {
-		return nbEleve;
+			return nbEleve;
+	}	
+		
+	//--------------------------------------------------------------------
+	//Accesseur pour Année de creation
+	//--------------------------------------------------------------------
+	public Date getAnneeCreation() {
+		return anneeCreation;
+	}	
+	
+	//--------------------------------------------------------------------
+	// méthode conversion en String de n'importe quelle var.
+	//--------------------------------------------------------------------
+	public String toString (Object input) {
+		//return String.valueOf(input);
+		return input.toString();
+	} 
+	
+	//--------------------------------------------------------------------
+	//accesseur noms Ecole,Ville pour pouvoir tester après:
+	//--------------------------------------------------------------------
+	public String getNomEcole() {
+		return nomEcole;
+	}
+	public String getNomVille() {
+		return nomVille;
 	}
 	
-	//Il faudrait un setAnneeCrea pour tester....
-	
-	//-----------------------------------------------------------------------------
-	//Accesseur pour la variable: annee de creation
-	//-----------------------------------------------------------------------------
-	public Date getAnneeCrea() {
-		return anneeCrea;
-	}
-	
-	
-	
-	//------------------------------------------------------------------------------
-	// méthode conversion en string: (A REVOIR CAR DEVRAIT PRENDRE TOUS LES VAR)
-	//------------------------------------------------------------------------------
-	public String toString (int input) {
-		return String.valueOf(input);
-	}
-	
-	//-----------------------------------------------
-	// Accesseur pour le Type de programme de l'école
-	//-----------------------------------------------
-	public Type getType() {
-		return type; 
-	}
-	public void setType(Type type) {
-		Ecole.type = type;
-	}   
-	
-	//Test des methodes de la classe:
+	//Test des méthodes de la classe:
+	//--------------------------------------------------------------------
 	public static void main(String[] args) throws ParseException {
 		Ecole myecole = new Ecole();
-		System.out.println( myecole.toString(10) );
-		System.out.println( myecole.getAnneeCrea() );
+		
+		//accesseur annee creation:
+		System.out.println("Annee de creation(accesseur): " + myecole.getAnneeCreation() );
+		
+		//voir valeur par defaut:
+		System.out.println("Nb. Eleve par defaut: " + myecole.getNbEleve()) ;
+		
+		//mutateur pour le Nb Eleve:
 		myecole.setNbEleve(15000) ;
-		System.out.println(myecole.getNbEleve() );
-		System.out.println( myecole.getType() );
-		myecole.setType(Type.primaire);
-		System.out.println( myecole.getType() );
+		
+		//voir le changement:
+		System.out.println("Nb. Eleve apres mutation: " + myecole.getNbEleve()) ;
+		
+		//conversion en String de n'importe quelle variable de la classe:
+		System.out.println( "Conversion nom Ecole: "+ myecole.toString(myecole.getNomEcole()) );
+		System.out.println( "Conversion nom Ville: "+ myecole.toString(myecole.getNomVille()) );
+		System.out.println( "Conversion Type Etab.: "+ myecole.toString(myecole.type));
+		System.out.println( "Conversion Annee Crea.: "+ myecole.toString(myecole.getAnneeCreation()));
+		
+		
 	}
 }
+
