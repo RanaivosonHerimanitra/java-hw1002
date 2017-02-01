@@ -5,15 +5,17 @@ public class Limousine {
 	private static int nbPassager;
 	private static String couleur;
 	private static double kmDepart;
-	
 	private static double kmArrive;
+	private static String [] chauffeurList; //tous les Id des chauffeurs qui font conduit cette limousine
+	private static int n=0;
     
 	// Constructeur:
-	//tokony objet chauffeur ve??
 	public Limousine (String idChauffeur, String imm)
 	{
-		String id = idChauffeur;
+		chauffeurList[n]= idChauffeur;
+		n++;
 		immatriculation = imm;
+		
 	}
 	// les getters de la classe:
 	public String getImmatriculation()
@@ -43,6 +45,16 @@ public class Limousine {
 	}
 	public static double getKmDepart() {
 		return kmDepart ;
+	}
+	public static String getCouleur() {
+		return couleur ;
+	}
+	// il faudrait aussi compter les trajet effectue par la limousine
+	public void updateInfo(String idChauffeur) {
+		chauffeurList[n] = idChauffeur;
+		n++;
+		double kmBefore= Limousine.getKmDepart() ;
+		Limousine.setKmDepart(kmBefore + Trajet.getLongueurTrajet() ) ;
 	}
 	
 

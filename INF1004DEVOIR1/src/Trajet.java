@@ -7,26 +7,32 @@ public class Trajet {
 	private static String lieuDepart;
 	private static String lieuDestination;
 	private static double longeurTrajet; //pour pouvoir calculer le km à l'arrivée. 
-	
-	//constructeur
+	private static String [] chauffeurList; //tous les Id des chauffeurs qui fait ce trajet
+	private static int n;
+	//constructeur qui enregistre entre autre les chauff assignes à ce trajet
 	public Trajet (String idChauffeur, String myLieuDepart, String myLieuDestination)
 	{
-		String id = idChauffeur;
+		n=0;
+		chauffeurList[n]= idChauffeur;
+		n++;
 		lieuDepart= myLieuDepart;
 		lieuDestination= myLieuDestination;
+		//apres il faudrait une methode next!!!
 	}
-	public  double getLongueurTrajet()
+	
+	public  static double getLongueurTrajet()
 	{
 		return longeurTrajet;
 	}
+	
 	//apres un trajet, met à jour le kilometrage de la limousine:
-	public static void commit()
+	//quand le trajet est termine should update kilometrage de la limousine
+	// pour la limousine en question , donc il faudrait au préalable chercher
+	//son numero d'immatriculation avant de la 
+	public static void commit(String idChauffeur)
 	{
-		//quand le trajet est termine should update kilometrage de la limousine
-		// pour la limousine en question , donc il faudrait au préalable chercher
-		//son numero d'immatriculation avant de la 
-		double kmBefore= Limousine.getKmDepart() ;
-		Limousine.setKmDepart(kmBefore + longeurTrajet) ;
+		chauffeurList[n]= idChauffeur;
+		n++;
 	}
 
 }
