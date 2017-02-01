@@ -1,35 +1,44 @@
-//Pour chacun des trajets associés au chauffeur, 
-//on veut conserver la ville de départ, la ville d’arrivée, 
-//le kilométrage au départ, 
-//le kilométrage à l’arrivée et la limousine utilisée pour le trajet.
+/*
+ * Trajet.java créée par Herimanitra RANAIVOSON pour le DEVOIR1 INF1004
+ * Cette classe possède entre autre une méthode commit() pour enregistrer les chauffeurs
+ * qui ont déjà fait un trajet donné
+ */
+
+//Est-ce qu'il faut aussi conserver
+//les voitures qui ont fait le trajet??
 
 public class Trajet {
 	private static String lieuDepart;
 	private static String lieuDestination;
-	private static double longeurTrajet; //pour pouvoir calculer le km à l'arrivée. 
-	private static String [] chauffeurList; //tous les Id des chauffeurs qui fait ce trajet
+	private static double longeurTrajet; 
+	private static String [] chauffeurList; 
 	private static int n;
-	//constructeur qui enregistre entre autre les chauff assignes à ce trajet
+	
+	//constructeur 
 	public Trajet (String idChauffeur, String myLieuDepart, String myLieuDestination)
 	{
 		n=0;
+		chauffeurList = new String[500];
 		chauffeurList[n]= idChauffeur;
 		n++;
 		lieuDepart= myLieuDepart;
 		lieuDestination= myLieuDestination;
-		//apres il faudrait une methode next!!!
 	}
-	
+	// getters:
 	public  static double getLongueurTrajet()
 	{
 		return longeurTrajet;
 	}
-	
-	//apres un trajet, met à jour le kilometrage de la limousine:
-	//quand le trajet est termine should update kilometrage de la limousine
-	// pour la limousine en question , donc il faudrait au préalable chercher
-	//son numero d'immatriculation avant de la 
-	public static void commit(String idChauffeur)
+	public  static String getLieuDepart()
+	{
+		return lieuDepart;
+	}
+	public  static String getLieuDestination()
+	{
+		return lieuDestination;
+	}
+	//
+	public  void commit(String idChauffeur)
 	{
 		chauffeurList[n]= idChauffeur;
 		n++;

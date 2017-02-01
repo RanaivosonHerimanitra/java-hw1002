@@ -1,4 +1,9 @@
-
+/*
+ * Limousine.java  créée par Herimanitra RANAIVOSON pour le DEVOIR1 INF1004
+ * Cette classe contient une méthode pour faire le plein d'essence:
+ * Et une methode updateInfo() permettant de mettre à jour le kilometrage du vehicule 
+ * à la fin de chaque trajet
+ */
 public class Limousine {
 	private static String immatriculation;
 	private static double reservoir;
@@ -6,17 +11,20 @@ public class Limousine {
 	private static String couleur;
 	private static double kmDepart;
 	private static double kmArrive;
-	private static String [] chauffeurList; //tous les Id des chauffeurs qui font conduit cette limousine
-	private static int n=0;
+	private static String [] chauffeurList; 
+	private static int n;
     
 	// Constructeur:
 	public Limousine (String idChauffeur, String imm)
 	{
+		n=0;
+		chauffeurList = new String [500];
 		chauffeurList[n]= idChauffeur;
 		n++;
 		immatriculation = imm;
 		
 	}
+	
 	// les getters de la classe:
 	public String getImmatriculation()
 	{
@@ -30,12 +38,12 @@ public class Limousine {
 	{
 		return nbPassager;
 	}
+	
 	//Les setters de la classe
 	public void setNbPassager(int value)
 	{
 		nbPassager= value;
 	}
-	// UTILE, s'il faut faire le plein d'essence par exemple:
 	public void setCapaciteReservoir(double value)
 	{
 		reservoir= value;
@@ -46,15 +54,18 @@ public class Limousine {
 	public static double getKmDepart() {
 		return kmDepart ;
 	}
+	public static double getKmArrive() {
+		return kmArrive ;
+	}
 	public static String getCouleur() {
 		return couleur ;
 	}
-	// il faudrait aussi compter les trajet effectue par la limousine
 	public void updateInfo(String idChauffeur) {
 		chauffeurList[n] = idChauffeur;
 		n++;
-		double kmBefore= Limousine.getKmDepart() ;
-		Limousine.setKmDepart(kmBefore + Trajet.getLongueurTrajet() ) ;
+		double kmBeforeDepart= Limousine.getKmDepart() ;
+		Limousine.setKmDepart(kmBeforeDepart + Trajet.getLongueurTrajet() ) ;
+		kmArrive = kmBeforeDepart + Trajet.getLongueurTrajet();
 	}
 	
 
