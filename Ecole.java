@@ -1,35 +1,56 @@
 //*****************************************************************************
 // Ecole.java              Auteur: Herimanitra RANAIVOSON, COURS:INF1002-HW2
-//Réalisation d'une classe Ecole avec des methodes et tests de ces methodes
+//Réalisation d'une classe Ecole avec des methodes getters and setters
 //*****************************************************************************
 
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class Ecole {
-	// variable d'instance:
+	
 	private static String nomEcole;
 	private static String nomVille;
 	private static int nbEleve;
-	private static Date anneeCreation;
+	private static int anneeCreation;
 	private enum Type  {primaire, secondaire, specialise};
-	private Type type;
-	private Ecole myecole;    
+	private Type type;  
 	
 	//---------------------------------------------------------------
-	//Constructeur pour la classe Ecole:
+	//Constructeur
 	//---------------------------------------------------------------
-	public Ecole() throws ParseException  {
+	public Ecole()   {
 		nomEcole = "uqtr";
 		nomVille="trois-rivieres";
 		nbEleve=10000;
-		SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-mm-dd");
-		anneeCreation= DateFormat.parse("2016-01-01");
+		anneeCreation= 2015;
 		type = Type.secondaire;
 	}
 	
+	//-------------------------------------------------------------------
+	//Mutateur pour le nom d Ecole
+	//-------------------------------------------------------------------
+	public void setNomEcole (String value) {
+		nomEcole= value;
+	}
+	
+	//-------------------------------------------------------------------
+	//Mutateur pour le nom de Ville
+	//-------------------------------------------------------------------
+	public void setNomVille (String value) {
+		nomVille= value;
+	}
+	
+	//-------------------------------------------------------------------
+	//Mutateur pour annee de creation
+	//-------------------------------------------------------------------
+	public void setAnneeCreation (int value) {
+		anneeCreation= value;
+	}
+	
+	//-------------------------------------------------------------------
+	//Mutateur pour le type Etablissement
+	//-------------------------------------------------------------------
+	public void setType (String value) {
+		this.type= Type.valueOf(value);
+	}
+		
 	//-------------------------------------------------------------------
 	//Mutateur pour le Nb. Elèves
 	//-------------------------------------------------------------------
@@ -38,7 +59,7 @@ public class Ecole {
 	}
 	
 	//--------------------------------------------------------------------
-	//Accesseur pour le Nb. Elèves (pour tester dans Main)
+	//Accesseur pour le Nb. Elèves pour le test
 	//--------------------------------------------------------------------
 	public int getNbEleve() {
 			return nbEleve;
@@ -47,30 +68,11 @@ public class Ecole {
 	//--------------------------------------------------------------------
 	//Accesseur pour Année de creation
 	//--------------------------------------------------------------------
-	public Date getAnneeCreation() {
+	public int getAnneeCreation() {
 		return anneeCreation;
-	}	
-	
+	}
 	//--------------------------------------------------------------------
-	// méthode conversion en String de n'importe quelle var.
-	//--------------------------------------------------------------------
-	public String toString () {
-		//est-ce correct?
-		try {
-			this.myecole = new Ecole();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String myMsg="Nom de l\'Ecole: "+ myecole.getNomEcole() + "\n";
-		myMsg +="Nom de la Ville: "+ myecole.getNomVille() + "\n";
-		myMsg += "Conversion Type Etab.: "+ myecole.type + "\n";
-		myMsg += "Conversion Annee Crea.: "+ myecole.getAnneeCreation();
-		return myMsg;
-	} 
-	
-	//--------------------------------------------------------------------
-	//accesseur noms Ecole,Ville pour pouvoir tester après:
+	//accesseur noms Ecole,Ville pour le test
 	//--------------------------------------------------------------------
 	public String getNomEcole() {
 		return nomEcole;
@@ -78,5 +80,19 @@ public class Ecole {
 	public String getNomVille() {
 		return nomVille;
 	}
+	
+	//--------------------------------------------------------------------
+	// méthode pour obtenir des infos de cette classe
+	//--------------------------------------------------------------------
+	public String toString () {
+		String myMsg="Nom de l\'Ecole: "+ nomEcole + "\n";
+		myMsg +="Nom de la Ville: "+ nomVille + "\n";
+		myMsg += "Type Etablissement: "+ type + "\n";
+		myMsg += "Nombre d\'eleves: "+ nbEleve + "\n";
+		myMsg += "Annee Creation: "+ anneeCreation;
+		return myMsg;
+	} 
+	
+	
 }
 

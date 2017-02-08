@@ -1,30 +1,37 @@
 //*****************************************************************************
 // EcoleTest.java              Auteur: Herimanitra RANAIVOSON, COURS:INF1002-HW2
-//Test des methodes de la classe ecole
+//Test des methodes de la classe Ecole
+//recupere les inputs, puis instancie et teste les différentes methodes
 //*****************************************************************************
 
-import java.text.ParseException;
+import java.util.Scanner;
 
 public class EcoleTest 
 {
-		public static void main(String[] args) throws ParseException 
+	private static Scanner scan;
+		public static void main(String[] args) 
 		{
-
+			//instantiation:
 			Ecole myecole = new Ecole();
 			
-			//accesseur annee creation:
+			//lecture des inputs:
+			scan = new Scanner(System.in);  
+			System.out.println("Entrez le nom de l\'ecole: "); 
+			myecole.setNomEcole(scan.nextLine() );
+			System.out.println("Entrez le nom de la ville: "); 
+			myecole.setNomVille(scan.nextLine() );
+			System.out.println("Entrez le nombre d\'eleves: "); 
+			myecole.setNbEleve( Integer.parseInt(scan.nextLine()) );
+			System.out.println("Entrez l\'annee de creation: "); 
+			myecole.setAnneeCreation( Integer.parseInt(scan.nextLine()) );
+			System.out.println("Entrez le type d\'etablissement (primaire,secondaire,specialise): "); 
+			myecole.setType( scan.nextLine());
+
+			
+			//Tests:
 			System.out.println("Annee de creation(accesseur): " + myecole.getAnneeCreation() );
-			
-			//voir valeur par defaut:
-			System.out.println("Nb. Eleve par defaut: " + myecole.getNbEleve()) ;
-			
-			//mutateur pour le Nb Eleve:
-			myecole.setNbEleve(15000) ;
-			
-			//voir le changement:
-			System.out.println("Nb. Eleve apres mutation: " + myecole.getNbEleve()) ;
-			
-			//test de la methode toString:
+			System.out.println("Nb. Eleve: " + myecole.getNbEleve()) ;
+			System.out.println("APPEL DE LA METHODE toString:");
 			System.out.println(myecole.toString());
 					
 		}
