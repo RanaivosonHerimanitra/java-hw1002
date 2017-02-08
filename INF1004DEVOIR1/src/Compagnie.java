@@ -73,7 +73,7 @@ public class Compagnie {
 	public void displayConfirmationMsg()
 	{
 		String msgReservation = "Le chauffeur : " + chauffeurNom + " " + chauffeurPrenom + " est reserve pour le trajet de ";
-		msgReservation += lieuDepart + " a  " + lieuDestination;
+		msgReservation += lieuDepart + " aï¿½ " + lieuDestination;
 		System.out.println(msgReservation);
 	}
 	public void makeTrip() 
@@ -91,7 +91,7 @@ public class Compagnie {
 	
 	public void findLimousineByChauffeur(String nom, String prenom, String annee)
 	{
-		String nameChauff=nom.substring(0,3) + prenom.substring(1) + annee.substring(2,4) ;
+		String nameChauff=nom.substring(0,3) + prenom.charAt(0) + annee.substring(2,4) ;
 		for ( int k=0; k<limousineList.size();k++)
 		{
 			Limousine X = limousineList.get(k);
