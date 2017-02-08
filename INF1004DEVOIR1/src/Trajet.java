@@ -13,9 +13,9 @@ public class Trajet {
 	private static String idChauffeur;
 	
 	//constructeur 
-	public Trajet (String id, String myLieuDepart, String myLieuDestination)
+	public Trajet (String idChauff, String myLieuDepart, String myLieuDestination)
 	{
-		setIdChauffeur(id);
+		setIdChauffeur(idChauff);
 		lieuDepart= myLieuDepart;
 		lieuDestination=myLieuDestination;
 	}

@@ -1,17 +1,16 @@
-
+/*
+ * Test.java, classe permettant de tester les specs du devoir 1 INF1004, par Herimanitra RANAIVOSON
+ */
 public class Test {
-//	private static String chauffeurNom;
-//	private static String chauffeurPrenom;
-//	private static String anneeEmbauche;
-//	private static String lieuDepart ;
-//	private static String lieuDestination;
-//	private static String immatriculation ;
-//	private static Scanner scan;
+
 	public static void main(String[] args)
 	{
 		Compagnie compagnie = new Compagnie();
 		compagnie.makeReservation();
 		compagnie.makeTrip();
-		compagnie.getLimousineByChauffeur("eric");
+		compagnie.displayConfirmationMsg();
+		compagnie.findLimousineByChauffeur("Eric", "Jean","2012");
+		compagnie.findLimousineByChauffeur("Eric", "Jean","2011");
+		compagnie.findLimousineByChauffeur("Xavier", "peter","2011");
 	}
 }

@@ -15,7 +15,7 @@ public class Chauffeur
 	//constructeur
     public Chauffeur (String nom, String prenom, String annee, String mytrajet)
     {
-    	identifiant= nom.substring(0,2) + prenom.substring(0) + annee.substring(2,3) ;
+    	identifiant= nom.substring(0,3) + prenom.substring(1) + annee.substring(2,4) ;
     	setNom(nom);
     	setPrenom(prenom);
     	setAnnee(annee);

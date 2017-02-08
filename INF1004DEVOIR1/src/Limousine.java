@@ -1,28 +1,43 @@
+import java.util.ArrayList;
+
 /*
- * Limousine.java  créée par Herimanitra RANAIVOSON pour le DEVOIR1 INF1004
+ * Limousine.java  par Herimanitra RANAIVOSON pour le DEVOIR1 INF1004
+ * 
  */
 public class Limousine {
-	private static String immatriculation;
+	private final ArrayList<String> numero = new ArrayList<>();
 	private static double reservoir;
 	private static String couleur;
 	private static double compteur;
 	private static double longTrajet;
-	
+	private int nbPassager;
+	private final ArrayList<String> idChauffeur = new ArrayList<>();
+	 
 	// Constructeur:
-	public Limousine (String imm,double re, String color,double lgTrajet)
+	public Limousine (String idChauff,String num,double re, String color,int nb,double lgTrajet)
 	{
-		immatriculation = imm;
+		idChauffeur.add(idChauff);
+		numero.add(num);
 		reservoir = re;
 		couleur= color;
+		setNbPassager(nb);
 		longTrajet = lgTrajet;
-		setCompteur(getCompteur() + longTrajet) ;		
+		setCompteur(getCompteur() + longTrajet) ;
+		
 	}
 	
-	// les getters de la classe:
-	public String getImmatriculation()
+	public ArrayList<String> getIdChauffeur() 
 	{
-		return immatriculation;
+		return idChauffeur;
+		
 	}
+
+	// les getters de la classe:
+	public ArrayList<String> getImmatriculation()
+	{
+		return numero;
+	}
+	
 	public double getCapaciteReservoir()
 	{
 		return reservoir;
@@ -33,6 +48,7 @@ public class Limousine {
 	{
 		reservoir= value;
 	}
+	
 	public String getCouleur() {
 		return couleur ;
 	}
@@ -43,5 +59,13 @@ public class Limousine {
 
 	public static void setCompteur(double compteur) {
 		Limousine.compteur = compteur;
+	}
+
+	public int getNbPassager() {
+		return nbPassager;
+	}
+
+	public void setNbPassager(int nbPassager) {
+		this.nbPassager = nbPassager;
 	}
 }
