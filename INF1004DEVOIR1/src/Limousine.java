@@ -5,34 +5,36 @@ import java.util.ArrayList;
  * 
  */
 public class Limousine {
-	private final ArrayList<String> numero = new ArrayList<>();
+	private  ArrayList<String> numero = new ArrayList<>();
 	private static double reservoir;
 	private static String couleur;
 	private static double compteur;
 	private static double longTrajet;
 	private int nbPassager;
-	private final ArrayList<String> idChauffeur = new ArrayList<>();
+	private  ArrayList<String> idChauffeur = new ArrayList<>();
 	 
-	// Constructeur:
-	public Limousine (String idChauff,String num,double re, String color,int nb,double lgTrajet)
+	// Constructor:
+	public Limousine (String idChauff,String num,double re, String color,int nb,double lgTrajet) throws EmptyLimousineException
 	{
 		idChauffeur.add(idChauff);
 		numero.add(num);
-		reservoir = re;
-		couleur= color;
-		setNbPassager(nb);
-		longTrajet = lgTrajet;
-		setCompteur(getCompteur() + longTrajet) ;
-		
+		if (re==0.)
+		{
+			throw new EmptyLimousineException();
+		} else {
+			reservoir = re;
+			couleur= color;
+			setNbPassager(nb);
+			longTrajet = lgTrajet;
+			setCompteur(getCompteur() + longTrajet) ;
+		}
 	}
-	
+	// les getters de la classe:
 	public ArrayList<String> getIdChauffeur() 
 	{
 		return idChauffeur;
 		
 	}
-
-	// les getters de la classe:
 	public ArrayList<String> getImmatriculation()
 	{
 		return numero;
@@ -43,12 +45,6 @@ public class Limousine {
 		return reservoir;
 	}
 	
-	//Les setters de la classe
-	public void setCapaciteReservoir(double value)
-	{
-		reservoir= value;
-	}
-	
 	public String getCouleur() {
 		return couleur ;
 	}
@@ -56,13 +52,19 @@ public class Limousine {
 	public double getCompteur() {
 		return compteur;
 	}
-
-	public static void setCompteur(double compteur) {
-		Limousine.compteur = compteur;
-	}
-
+	
 	public int getNbPassager() {
 		return nbPassager;
+	}
+	
+	//Les setters de la classe
+	public void setCapaciteReservoir(double value)
+	{
+		reservoir= value;
+	}
+	
+	public static void setCompteur(double compteur) {
+		Limousine.compteur = compteur;
 	}
 
 	public void setNbPassager(int nbPassager) {

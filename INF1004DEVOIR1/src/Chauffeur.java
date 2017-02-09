@@ -1,6 +1,8 @@
+import java.util.Calendar;
+
 /*
- * Chauffeur.java créée par Herimanitra RANAIVOSON pour le DEVOIR1 INF1004
- * Son constructeur implemente  l'assignation de l'identifiant
+ * Chauffeur.java, par Herimanitra RANAIVOSON pour le DEVOIR1 INF1004
+ * Son constructeur implemente  l'assignation de l'identifiant avec setIdentifiant
  */
 
 public class Chauffeur 
@@ -12,14 +14,22 @@ public class Chauffeur
 	private static String identifiant;
 	private static String trajet;
 	
-	//constructeur
-    public Chauffeur (String nom, String prenom, String annee, String mytrajet)
+	//constructor
+    public Chauffeur (String nom, String prenom, String annee, String mytrajet) throws InconsistentYear
     {
-    	identifiant= nom.substring(0,3) + prenom.charAt(0) + annee.substring(2,4) ;
+    	Calendar now = Calendar.getInstance();   
+    	int currentYear = now.get(Calendar.YEAR);       
     	setNom(nom);
     	setPrenom(prenom);
     	setAnnee(annee);
     	setTrajet(mytrajet);
+    	if ( Integer.valueOf(annee)>currentYear)
+    	{
+    		throw new InconsistentYear();
+    	} else  {
+    		setIdentifiant(nom, prenom, annee);	
+    	}
+    	
     	
     }
 	//setters:
@@ -34,6 +44,10 @@ public class Chauffeur
 	public static void setAnnee(String value)
 	{
 		anneeEmbauche= value;
+	}
+	public void setIdentifiant (String nom, String prenom, String annee)
+	{
+		identifiant= nom.substring(0,3) + prenom.charAt(0) + annee.substring(2,4) ;
 	}
 	//les getters:
 	public String getIdentifiant ()

@@ -1,11 +1,14 @@
-import java.util.ArrayList;
-import java.util.Scanner;
-
 /*
  * Compagnie.java representation de la Compagnie , par Herimanitra RANAIVOSON
  * possede une liste de chauffeurs,limousines et historiques de ses activites(trajets)
  * les donnees de nouvelles reservations sont entrees au clavier
+ * 02 exception definies:
+ * (1) si l'annee d'embauche superieure a l'annee courante
+ * (2) si le reservoir de la limousine est vide (=0.)
 */
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Compagnie {
 	
@@ -27,11 +30,11 @@ public class Compagnie {
 	ArrayList<Trajet> trajetHistorique;
 	Trajet trajet;
 	
-	public Compagnie () 
+	public Compagnie () throws EmptyLimousineException , InconsistentYear
 	{
 		// initialisation:
 		chauffeur = new Chauffeur("Eric","Jean","2012","2900 Fortin");
-		trajet = new Trajet(chauffeur.getIdentifiant(),"shawinigan","Quebec city");
+		trajet = new Trajet(chauffeur.getIdentifiant(),"shawinigan","Quebec city",10.);
 		limousine = new Limousine(chauffeur.getIdentifiant(),"5619TBC",95,"bleu",2,10);
 		
 		limousineList= new ArrayList<Limousine>();
@@ -45,7 +48,7 @@ public class Compagnie {
 		
 	}
 	
-	public void makeReservation()
+	public void makeReservation() 
 	{
 		//entre les inputs:
 		scan = new Scanner(System.in);  
@@ -64,7 +67,9 @@ public class Compagnie {
 		System.out.println("Entrez la couleur de la limousine: "); 
 		color = scan.nextLine();	
 		System.out.println("Entrez la capacite du reservoir: "); 
-		reservoir =Double.parseDouble( scan.nextLine());	
+		reservoir =Double.parseDouble( scan.nextLine());
+		
+			
 		System.out.println("Entrez la longeur du trajet en km: "); 
 		longTrjet =Double.parseDouble( scan.nextLine());	
 		System.out.println("Entrez le nombre de passagers: "); 
@@ -73,20 +78,27 @@ public class Compagnie {
 	public void displayConfirmationMsg()
 	{
 		String msgReservation = "Le chauffeur : " + chauffeurNom + " " + chauffeurPrenom + " est reserve pour le trajet de ";
-		msgReservation += lieuDepart + " a� " + lieuDestination;
+		msgReservation += lieuDepart + " a " + lieuDestination;
 		System.out.println(msgReservation);
 	}
-	public void makeTrip() 
+	public void makeTrip() throws InconsistentYear
 	{
 		Chauffeur chauffeur = new Chauffeur(chauffeurNom,chauffeurPrenom,anneeEmbauche,lieuDestination);
 		String identifiantChauffeur = chauffeur.getIdentifiant(); 
 		//attribution du trajet au chauffeur:
-		Trajet trajet = new Trajet(identifiantChauffeur,lieuDepart, lieuDestination);
-		Limousine limousine = new Limousine(identifiantChauffeur,immatriculation, reservoir, color,nbpass, longTrjet);		
-		//save trip data:
-		chauffeurList.add(chauffeur);
-		trajetHistorique.add(trajet);
-		limousineList.add(limousine);
+		Trajet trajet = new Trajet(identifiantChauffeur,lieuDepart, lieuDestination,longTrjet);
+		try {
+			Limousine limousine = new Limousine(identifiantChauffeur,immatriculation, reservoir, color,nbpass, longTrjet);	
+			//save trip data:
+			chauffeurList.add(chauffeur);
+			trajetHistorique.add(trajet);
+			limousineList.add(limousine);
+		}
+		catch (EmptyLimousineException e1)
+		{
+			System.out.println(e1);
+		}
+		
 	}
 	
 	public void findLimousineByChauffeur(String nom, String prenom, String annee)
@@ -112,5 +124,25 @@ public class Compagnie {
 				System.out.println("Aucune historique de trajets pour: " + nameChauff);
 			}
 		}
+	}
+	
+	public void getAllTrajet()
+	{
+		for ( int k=0; k<trajetHistorique.size();k++)
+		{
+			ArrayList<String> chauff = trajetHistorique.get(k).getIdChauffeur();
+			ArrayList<String> lieuDep=  trajetHistorique.get(k).getLieuDepart();
+			ArrayList<String> lieuDest=  trajetHistorique.get(k).getLieuDestination();
+			List<Double> longr = trajetHistorique.get(k).getLongueurTrajet();
+			int mysize = chauff.size();
+			for (int u=0; u<mysize ;u++)
+			{
+				String mymsg="Le trajet de " + lieuDep.get(u) + " a " + lieuDest.get(u);
+				mymsg += " d\'une longueur en km de " + longr.get(u);
+				mymsg += " a ete effectue par le chauffeur ID: " + chauff.get(u) ;
+				System.out.println(mymsg);
+			}
+		}
+		
 	}
 }

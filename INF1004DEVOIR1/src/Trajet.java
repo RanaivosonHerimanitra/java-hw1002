@@ -1,43 +1,43 @@
-/*
- * Trajet.java créée par Herimanitra RANAIVOSON pour le DEVOIR1 INF1004
+import java.util.ArrayList;
+import java.util.List;
 
+/*
+ * Trajet.java creee par Herimanitra RANAIVOSON pour le DEVOIR1 INF1004
  */
 
-//Est-ce qu'il faut aussi conserver
-//les voitures qui ont fait le trajet??
-
 public class Trajet {
-	private static String lieuDepart;
-	private static String lieuDestination;
-	private static double longeurTrajet; 
-	private static String idChauffeur;
+	private  ArrayList<String> lieuDepart= new ArrayList<>();
+	private  ArrayList<String> lieuDestination= new ArrayList<>();
+	private  List<Double> longeurTrajet= new ArrayList<Double>();
+	private  ArrayList<String> idChauffeur= new ArrayList<>();
 	
 	//constructeur 
-	public Trajet (String idChauff, String myLieuDepart, String myLieuDestination)
+	public Trajet (String idChauff, String myLieuDepart, String myLieuDestination,double lgtrajet)
 	{
 		setIdChauffeur(idChauff);
-		lieuDepart= myLieuDepart;
-		lieuDestination=myLieuDestination;
+		lieuDepart.add(myLieuDepart);
+		lieuDestination.add(myLieuDestination);
+		longeurTrajet.add(lgtrajet);
 	}
 	// getters:
-	public  static double getLongueurTrajet()
+	public   List<Double> getLongueurTrajet()
 	{
 		return longeurTrajet;
 	}
-	public  static String getLieuDepart()
+	public   ArrayList<String> getLieuDepart()
 	{
 		return lieuDepart;
 	}
-	public  static String getLieuDestination()
+	public   ArrayList<String> getLieuDestination()
 	{
 		return lieuDestination;
 	}
 	
-	public static String getIdChauffeur() {
+	public ArrayList<String> getIdChauffeur() {
 		return idChauffeur;
 	}
-	public static void setIdChauffeur(String idChauffeur) {
-		Trajet.idChauffeur = idChauffeur;
+	public  void setIdChauffeur(String id) {
+		idChauffeur.add(id);
 	}
 
 }
