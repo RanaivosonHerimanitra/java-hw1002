@@ -5,10 +5,10 @@
 
 public class Ecole {
 	
-	private static String nomEcole;
-	private static String nomVille;
-	private static int nbEleve;
-	private static int anneeCreation;
+	private  String nomEcole;
+	private  String nomVille;
+	private  int nbEleve;
+	private  int anneeCreation;
 	private enum Type  {primaire, secondaire, specialise};
 	private Type type;  
 	
@@ -71,6 +71,7 @@ public class Ecole {
 	public int getAnneeCreation() {
 		return anneeCreation;
 	}
+	
 	//--------------------------------------------------------------------
 	//accesseur noms Ecole,Ville pour le test
 	//--------------------------------------------------------------------
@@ -87,12 +88,10 @@ public class Ecole {
 	public String toString () {
 		String myMsg="Nom de l\'Ecole: "+ nomEcole + "\n";
 		myMsg +="Nom de la Ville: "+ nomVille + "\n";
-		myMsg += "Type Etablissement: "+ type + "\n";
+		myMsg += "Type Etablissement (primaire-secondaire-specialise): "+ type + "\n";
 		myMsg += "Nombre d\'eleves: "+ nbEleve + "\n";
 		myMsg += "Annee Creation: "+ anneeCreation;
 		return myMsg;
 	} 
-	
-	
 }
 
