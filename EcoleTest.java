@@ -30,7 +30,11 @@ public class EcoleTest
 			
 			//Tests:
 			System.out.println("Annee de creation(accesseur): " + myecole.getAnneeCreation() );
-			System.out.println("Nb. Eleve: " + myecole.getNbEleve()) ;
+			System.out.println("*************Test du mutateur pour le nombre d'eleves****************");
+			int NbEleveBefore = myecole.getNbEleve();
+			System.out.println("Entrez un nouveau nombre d\'eleves: "); 
+			myecole.setNbEleve( Integer.parseInt(scan.nextLine()) );
+			System.out.println("Nb eleves ,avant, etait:" + NbEleveBefore + ", Nb eleves maintenant:" + myecole.getNbEleve());
 			System.out.println("*************APPEL DE LA METHODE toString****************");
 			System.out.println(myecole.toString());
 					
