@@ -1,17 +1,17 @@
-import java.util.Calendar;
-
 /*
  * Chauffeur.java, par Herimanitra RANAIVOSON pour le DEVOIR1 INF1004
  * Son constructeur implemente  l'assignation de l'identifiant avec setIdentifiant
  */
 
+import java.util.Calendar;
+
 public class Chauffeur 
 {
-	private static String nom;
-	private static String prenom;
-	private static String anneeEmbauche;
-	private static String adresse;
-	private static String identifiant;
+	private  String nom;
+	private  String prenom;
+	private  String anneeEmbauche;
+	private  String adresse;
+	private  String identifiant;
 	private static String trajet;
 	
 	//constructor
@@ -33,15 +33,15 @@ public class Chauffeur
     	
     }
 	//setters:
-	public static void setNom(String value)
+	public void setNom(String value)
 	{
 		nom= value;
 	}
-	public static void setPrenom(String value)
+	public void setPrenom(String value)
 	{
 		prenom= value;
 	}
-	public static void setAnnee(String value)
+	public void setAnnee(String value)
 	{
 		anneeEmbauche= value;
 	}
@@ -70,10 +70,10 @@ public class Chauffeur
 	{
 		return adresse;
 	}
-	public static String getTrajet() {
+	public  String getTrajet() {
 		return trajet;
 	}
-	public static void setTrajet(String trajet) {
+	public void setTrajet(String trajet) {
 		Chauffeur.trajet = trajet;
 	}
 	

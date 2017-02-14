@@ -1,15 +1,15 @@
-import java.util.ArrayList;
-
 /*
  * Limousine.java  par Herimanitra RANAIVOSON pour le DEVOIR1 INF1004
  * 
  */
+import java.util.ArrayList;
+
 public class Limousine {
 	private  ArrayList<String> numero = new ArrayList<>();
-	private static double reservoir;
-	private static String couleur;
+	private  double reservoir;
+	private  String couleur;
 	private static double compteur;
-	private static double longTrajet;
+	private  double longTrajet;
 	private int nbPassager;
 	private  ArrayList<String> idChauffeur = new ArrayList<>();
 	 
@@ -63,7 +63,7 @@ public class Limousine {
 		reservoir= value;
 	}
 	
-	public static void setCompteur(double compteur) {
+	public  void setCompteur(double compteur) {
 		Limousine.compteur = compteur;
 	}
 

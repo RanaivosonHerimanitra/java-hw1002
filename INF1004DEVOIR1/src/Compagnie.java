@@ -12,14 +12,14 @@ import java.util.Scanner;
 
 public class Compagnie {
 	
-	private static String chauffeurNom;
-	private static String chauffeurPrenom;
-	private static String anneeEmbauche;
-	private static String lieuDepart;
+	private  String chauffeurNom;
+	private  String chauffeurPrenom;
+	private  String anneeEmbauche;
+	private  String lieuDepart;
 	private  String immatriculation;
-	private static String color;
-	private static Scanner scan;
-	private static String lieuDestination;
+	private  String color;
+	private  Scanner scan;
+	private  String lieuDestination;
 	private double reservoir,longTrjet;
 	private int nbpass;
 	
