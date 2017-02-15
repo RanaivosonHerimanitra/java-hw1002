@@ -33,7 +33,7 @@ public class Compagnie {
 	
 	public Compagnie () throws EmptyLimousineException , InconsistentYear
 	{
-		// initialisation:
+		// initialisation pour tester les specs du devoir:
 		chauffeur = new Chauffeur("Eric","Jean","2012","2900 Fortin");
 		trajet = new Trajet(chauffeur.getIdentifiant(),"shawinigan","Quebec city",10.);
 		limousine = new Limousine(chauffeur.getIdentifiant(),"5619TBC",95,"bleu",2,10);
@@ -111,6 +111,9 @@ public class Compagnie {
 		
 	}
 	
+	//-----------------------------------
+	// retrieve historic of all Limousine
+	//-----------------------------------
 	public void findLimousineByChauffeur(String nom, String prenom, String annee)
 	{
 		String nameChauff=nom.substring(0,3) + prenom.charAt(0) + annee.substring(2,4) ;
