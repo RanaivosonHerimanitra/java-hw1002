@@ -1,6 +1,7 @@
 /*
  * Compagnie.java representation de la Compagnie , par Herimanitra RANAIVOSON
- * possede une liste de chauffeurs,limousines et historiques de ses activites(trajets)
+ * possede une liste de chauffeurs,
+ * limousines et historiques de ses activites(trajets)
  * les donnees de nouvelles reservations sont entrees au clavier
  * 02 exception definies:
  * (1) si l'annee d'embauche superieure a l'annee courante
@@ -48,9 +49,12 @@ public class Compagnie {
 		
 	}
 	
+	//----------------------------------------------
+	//allow us to enter data from a user reservation
+	//----------------------------------------------
 	public void makeReservation() 
 	{
-		//entre les inputs:
+		
 		scan = new Scanner(System.in);  
 		System.out.println("Entrez le nom du chauffeur: "); 
 		chauffeurNom = scan.nextLine();
@@ -68,19 +72,25 @@ public class Compagnie {
 		color = scan.nextLine();	
 		System.out.println("Entrez la capacite du reservoir: "); 
 		reservoir =Double.parseDouble( scan.nextLine());
-		
-			
 		System.out.println("Entrez la longeur du trajet en km: "); 
 		longTrjet =Double.parseDouble( scan.nextLine());	
 		System.out.println("Entrez le nombre de passagers: "); 
 		nbpass =Integer.parseInt( scan.nextLine());	
 	}
+	
+	//----------------------------------------------
+	// message to confirm reservation
+	//----------------------------------------------
 	public void displayConfirmationMsg()
 	{
 		String msgReservation = "Le chauffeur : " + chauffeurNom + " " + chauffeurPrenom + " est reserve pour le trajet de ";
 		msgReservation += lieuDepart + " a " + lieuDestination;
 		System.out.println(msgReservation);
 	}
+	
+	//----------------------------------------------
+	// run the actual trip!
+	//----------------------------------------------
 	public void makeTrip() throws InconsistentYear
 	{
 		Chauffeur chauffeur = new Chauffeur(chauffeurNom,chauffeurPrenom,anneeEmbauche,lieuDestination);
@@ -126,6 +136,9 @@ public class Compagnie {
 		}
 	}
 	
+	//----------------------------------------------
+	//retrieve data for a given Trajet ....
+	//----------------------------------------------
 	public void getAllTrajet()
 	{
 		for ( int k=0; k<trajetHistorique.size();k++)
