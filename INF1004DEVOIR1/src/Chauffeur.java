@@ -1,6 +1,7 @@
 /*
  * Chauffeur.java, par Herimanitra RANAIVOSON pour le DEVOIR1 INF1004
- * Son constructeur implemente  l'assignation de l'identifiant avec setIdentifiant
+ * Son constructeur implemente  l'assignation de l'identifiant 
+ * avec setIdentifiant
  */
 
 import java.util.Calendar;
@@ -12,7 +13,8 @@ public class Chauffeur
 	private  String anneeEmbauche;
 	private  String adresse;
 	private  String identifiant;
-	private static String trajet;
+	private  String trajet;
+	private final int MINYEAR=1960;
 	
 	//constructor
     public Chauffeur (String nom, String prenom, String annee, String mytrajet) throws InconsistentYear
@@ -23,7 +25,7 @@ public class Chauffeur
     	setPrenom(prenom);
     	setAnnee(annee);
     	setTrajet(mytrajet);
-    	if ( Integer.valueOf(annee)>currentYear)
+    	if ( Integer.valueOf(annee)>currentYear || Integer.valueOf(annee)<MINYEAR)
     	{
     		throw new InconsistentYear();
     	} else  {
@@ -73,8 +75,8 @@ public class Chauffeur
 	public  String getTrajet() {
 		return trajet;
 	}
-	public void setTrajet(String trajet) {
-		Chauffeur.trajet = trajet;
+	public void setTrajet(String traj) {
+		trajet = traj;
 	}
 	
 }
