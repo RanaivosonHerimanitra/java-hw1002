@@ -1,9 +1,12 @@
+/*
+ * Trajet.java , par Herimanitra RANAIVOSON pour le DEVOIR1 INF1004
+ * les primitives sont de type ArrayList pour pouvoir repondre a la derniere
+ * specification du devoir
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 
-/*
- * Trajet.java creee par Herimanitra RANAIVOSON pour le DEVOIR1 INF1004
- */
 
 public class Trajet {
 	private  ArrayList<String> lieuDepart= new ArrayList<>();
