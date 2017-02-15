@@ -116,26 +116,26 @@ public class Compagnie {
 	//-----------------------------------
 	public void findLimousineByChauffeur(String nom, String prenom, String annee)
 	{
-		String nameChauff=nom.substring(0,3) + prenom.charAt(0) + annee.substring(2,4) ;
+		String idChauff=nom.substring(0,3) + prenom.charAt(0) + annee.substring(2,4) ;
+		boolean hasDrived=false;
 		for ( int k=0; k<limousineList.size();k++)
 		{
 			Limousine X = limousineList.get(k);
 			ArrayList<String> chauffeur = X.getIdChauffeur();
 			ArrayList<String> immatriculation = X.getImmatriculation();
 			int mysize = immatriculation.size();
-			boolean hasDrived=false;
 			for ( int u=0; u<mysize; u++) 
 			{
-				if ( chauffeur.get(u).equals(nameChauff) ) 
+				if ( chauffeur.get(u).equals(idChauff) ) 
 				{
-					System.out.println(nameChauff+ " a conduit la limousine d\'immatriculation: " +  immatriculation.get(u) );
+					System.out.println(idChauff+ " a conduit la limousine d\'immatriculation: " +  immatriculation.get(u) );
 					hasDrived=true;
 				} 
 			}
-			if (hasDrived == false )
-			{
-				System.out.println("Aucune historique de trajets pour: " + nameChauff);
-			}
+		}
+		if (hasDrived == false )
+		{
+			System.out.println("Aucune historique de trajets pour: " + idChauff);
 		}
 	}
 	
