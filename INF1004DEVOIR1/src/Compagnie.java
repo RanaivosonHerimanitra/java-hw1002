@@ -91,7 +91,11 @@ public class Compagnie {
 	//----------------------------------------------
 	// run the actual trip!
 	//----------------------------------------------
+<<<<<<< HEAD
 	public void makeTrip() throws InconsistentYear, InconsistentTrajet
+=======
+	public void makeTrip() throws InconsistentYear
+>>>>>>> 03301a333bda1468ff1ffee9441a7cb6326b6aab
 	{
 		Chauffeur chauffeur = new Chauffeur(chauffeurNom,chauffeurPrenom,anneeEmbauche,lieuDestination);
 		String identifiantChauffeur = chauffeur.getIdentifiant(); 
