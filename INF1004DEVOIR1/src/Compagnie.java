@@ -1,12 +1,14 @@
 /*
- * Compagnie.java representation de la Compagnie , par Herimanitra RANAIVOSON
+ * Compagnie.java representation de la Compagnie , par Herimanitra RANAIVOSON IINF1004-Devoir1
+ * 
  * possede une liste de chauffeurs,
  * limousines et historiques de ses activites(trajets)
  * les donnees de nouvelles reservations sont entrees au clavier
  * 02 exception definies:
  * (1) si l'annee d'embauche superieure a l'annee courante
  * (2a) si le reservoir de la limousine est vide (=0.)
- * (2b) si le lieu de depart
+ * (2b) si le lieu de depart egal au lieu d arrivee
+ * (3) l immatriculation ne doit pas etre laisser vide
 */
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +55,7 @@ public class Compagnie {
 	//----------------------------------------------
 	//allow us to enter data from a user reservation
 	//----------------------------------------------
-	public void makeReservation() 
+	public void makeReservation() throws ImmatriculationNullException 
 	{
 		
 		scan = new Scanner(System.in);  
@@ -69,6 +71,10 @@ public class Compagnie {
 		lieuDestination = scan.nextLine();
 		System.out.println("Entrez le numero d\'immatriculation de la limousine: "); 
 		immatriculation = scan.nextLine();	
+		if (immatriculation.isEmpty() || immatriculation.equals("") )
+		{
+			throw new ImmatriculationNullException();
+		}
 		System.out.println("Entrez la couleur de la limousine: "); 
 		color = scan.nextLine();	
 		System.out.println("Entrez la capacite du reservoir: "); 
@@ -113,6 +119,28 @@ public class Compagnie {
 	}
 	
 	//-----------------------------------
+	//get last entered chauffeurNom (for testing purpose)
+	//-----------------------------------
+	public String getLastEnteredNom()
+	{
+		return chauffeurNom;
+	}
+	//-----------------------------------
+	// get last entered chauffeurPrenom (for testing purpose)
+	//-----------------------------------
+	public String getLastEnteredPrenom()
+	{
+		return chauffeurPrenom;
+	}
+	//-----------------------------------
+	// get annee embauche (for testing purpose)
+	//-----------------------------------
+	public String getLastEnteredAnneeEmbauche()
+	{
+		return anneeEmbauche;
+	}
+	
+	//-----------------------------------
 	// retrieve historic of all Limousine
 	//-----------------------------------
 	public void findLimousineByChauffeur(String nom, String prenom, String annee)
@@ -141,7 +169,7 @@ public class Compagnie {
 	}
 	
 	//----------------------------------------------
-	//retrieve data for a given Trajet ....
+	//retrieve data related to a given Trajet ....
 	//----------------------------------------------
 	public void getAllTrajet()
 	{
@@ -160,6 +188,6 @@ public class Compagnie {
 				System.out.println(mymsg);
 			}
 		}
-		
 	}
+	
 }
