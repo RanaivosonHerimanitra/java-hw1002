@@ -19,14 +19,12 @@ public class Test {
 			System.out.println("****************************************************************************");
 			System.out.println("************CARACTERISTIQUES DES TRAJETS EFFECTUES************");
 			compagnie.getAllTrajet();
-			//exception si année d'embauche supérieure à l'année courante;
+			//exception si annee d'embauche superieure à l'annee courante;
 		} 
 		catch (EmptyLimousineException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		catch (InconsistentYear e2) {
-			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
 		

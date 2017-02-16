@@ -1,6 +1,7 @@
 /*
  * Compagnie.java representation de la Compagnie , par Herimanitra RANAIVOSON
- * possede une liste de chauffeurs,limousines et historiques de ses activites(trajets)
+ * possede une liste de chauffeurs,
+ * limousines et historiques de ses activites(trajets)
  * les donnees de nouvelles reservations sont entrees au clavier
  * 02 exception definies:
  * (1) si l'annee d'embauche superieure a l'annee courante
@@ -30,9 +31,9 @@ public class Compagnie {
 	ArrayList<Trajet> trajetHistorique;
 	Trajet trajet;
 	
-	public Compagnie () throws EmptyLimousineException , InconsistentYear
+	public Compagnie () throws EmptyLimousineException , InconsistentYear, InconsistentTrajet
 	{
-		// initialisation:
+		// initialisation pour tester les specs du devoir:
 		chauffeur = new Chauffeur("Eric","Jean","2012","2900 Fortin");
 		trajet = new Trajet(chauffeur.getIdentifiant(),"shawinigan","Quebec city",10.);
 		limousine = new Limousine(chauffeur.getIdentifiant(),"5619TBC",95,"bleu",2,10);
@@ -48,9 +49,12 @@ public class Compagnie {
 		
 	}
 	
+	//----------------------------------------------
+	//allow us to enter data from a user reservation
+	//----------------------------------------------
 	public void makeReservation() 
 	{
-		//entre les inputs:
+		
 		scan = new Scanner(System.in);  
 		System.out.println("Entrez le nom du chauffeur: "); 
 		chauffeurNom = scan.nextLine();
@@ -68,20 +72,26 @@ public class Compagnie {
 		color = scan.nextLine();	
 		System.out.println("Entrez la capacite du reservoir: "); 
 		reservoir =Double.parseDouble( scan.nextLine());
-		
-			
 		System.out.println("Entrez la longeur du trajet en km: "); 
 		longTrjet =Double.parseDouble( scan.nextLine());	
 		System.out.println("Entrez le nombre de passagers: "); 
 		nbpass =Integer.parseInt( scan.nextLine());	
 	}
+	
+	//----------------------------------------------
+	// message to confirm reservation
+	//----------------------------------------------
 	public void displayConfirmationMsg()
 	{
 		String msgReservation = "Le chauffeur : " + chauffeurNom + " " + chauffeurPrenom + " est reserve pour le trajet de ";
 		msgReservation += lieuDepart + " a " + lieuDestination;
 		System.out.println(msgReservation);
 	}
-	public void makeTrip() throws InconsistentYear
+	
+	//----------------------------------------------
+	// run the actual trip!
+	//----------------------------------------------
+	public void makeTrip() throws InconsistentYear, InconsistentTrajet
 	{
 		Chauffeur chauffeur = new Chauffeur(chauffeurNom,chauffeurPrenom,anneeEmbauche,lieuDestination);
 		String identifiantChauffeur = chauffeur.getIdentifiant(); 
@@ -101,31 +111,37 @@ public class Compagnie {
 		
 	}
 	
+	//-----------------------------------
+	// retrieve historic of all Limousine
+	//-----------------------------------
 	public void findLimousineByChauffeur(String nom, String prenom, String annee)
 	{
-		String nameChauff=nom.substring(0,3) + prenom.charAt(0) + annee.substring(2,4) ;
+		String idChauff=nom.substring(0,3) + prenom.charAt(0) + annee.substring(2,4) ;
+		boolean hasDrived=false;
 		for ( int k=0; k<limousineList.size();k++)
 		{
 			Limousine X = limousineList.get(k);
 			ArrayList<String> chauffeur = X.getIdChauffeur();
 			ArrayList<String> immatriculation = X.getImmatriculation();
 			int mysize = immatriculation.size();
-			boolean hasDrived=false;
 			for ( int u=0; u<mysize; u++) 
 			{
-				if ( chauffeur.get(u).equals(nameChauff) ) 
+				if ( chauffeur.get(u).equals(idChauff) ) 
 				{
-					System.out.println(nameChauff+ " a conduit la limousine d\'immatriculation: " +  immatriculation.get(u) );
+					System.out.println(idChauff+ " a conduit la limousine d\'immatriculation: " +  immatriculation.get(u) );
 					hasDrived=true;
 				} 
 			}
-			if (hasDrived == false )
-			{
-				System.out.println("Aucune historique de trajets pour: " + nameChauff);
-			}
+		}
+		if (hasDrived == false )
+		{
+			System.out.println("Aucune historique de trajets pour: " + idChauff);
 		}
 	}
 	
+	//----------------------------------------------
+	//retrieve data for a given Trajet ....
+	//----------------------------------------------
 	public void getAllTrajet()
 	{
 		for ( int k=0; k<trajetHistorique.size();k++)
@@ -138,7 +154,7 @@ public class Compagnie {
 			for (int u=0; u<mysize ;u++)
 			{
 				String mymsg="Le trajet de " + lieuDep.get(u) + " a " + lieuDest.get(u);
-				mymsg += " d\'une longueur en km de " + longr.get(u);
+				mymsg += " d\'une longueur de " + longr.get(u) + " km";
 				mymsg += " a ete effectue par le chauffeur ID: " + chauff.get(u) ;
 				System.out.println(mymsg);
 			}

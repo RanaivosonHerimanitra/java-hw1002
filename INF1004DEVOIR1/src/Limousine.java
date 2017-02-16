@@ -18,7 +18,7 @@ public class Limousine {
 	{
 		idChauffeur.add(idChauff);
 		numero.add(num);
-		if (re==0.)
+		if (re<=0.)
 		{
 			throw new EmptyLimousineException();
 		} else {
@@ -63,11 +63,11 @@ public class Limousine {
 		reservoir= value;
 	}
 	
-	public  void setCompteur(double compteur) {
-		Limousine.compteur = compteur;
+	public  void setCompteur(double compt) {
+		compteur = compt;
 	}
 
-	public void setNbPassager(int nbPassager) {
-		this.nbPassager = nbPassager;
+	public void setNbPassager(int nbPass) {
+		nbPassager = nbPass;
 	}
 }
