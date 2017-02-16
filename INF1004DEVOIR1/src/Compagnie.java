@@ -5,7 +5,8 @@
  * les donnees de nouvelles reservations sont entrees au clavier
  * 02 exception definies:
  * (1) si l'annee d'embauche superieure a l'annee courante
- * (2) si le reservoir de la limousine est vide (=0.)
+ * (2a) si le reservoir de la limousine est vide (=0.)
+ * (2b) si le lieu de depart
 */
 import java.util.ArrayList;
 import java.util.List;
@@ -91,11 +92,7 @@ public class Compagnie {
 	//----------------------------------------------
 	// run the actual trip!
 	//----------------------------------------------
-<<<<<<< HEAD
 	public void makeTrip() throws InconsistentYear, InconsistentTrajet
-=======
-	public void makeTrip() throws InconsistentYear
->>>>>>> 03301a333bda1468ff1ffee9441a7cb6326b6aab
 	{
 		Chauffeur chauffeur = new Chauffeur(chauffeurNom,chauffeurPrenom,anneeEmbauche,lieuDestination);
 		String identifiantChauffeur = chauffeur.getIdentifiant(); 

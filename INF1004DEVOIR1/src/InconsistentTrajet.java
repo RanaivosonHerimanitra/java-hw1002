@@ -7,6 +7,6 @@ public class InconsistentTrajet extends Exception {
 
 	public  InconsistentTrajet()
 	{
-		System.out.println("La longeur du trajet ne peut etre zero ou inferieur");
+		System.out.println("La longeur du trajet ne peut etre zero ou inferieur et/ou les lieux de departs et arrives ne peuvent pas etre le meme");
 	}
 }

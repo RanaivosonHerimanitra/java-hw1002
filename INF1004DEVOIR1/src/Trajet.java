@@ -17,7 +17,7 @@ public class Trajet {
 	//constructeur 
 	public Trajet (String idChauff, String myLieuDepart, String myLieuDestination,double lgtrajet) throws InconsistentTrajet
 	{
-		if (lgtrajet<=0) {
+		if ( (lgtrajet<=0) || myLieuDepart.equals(myLieuDestination) ) {
 			throw new InconsistentTrajet();
 		} else {
 			setIdChauffeur(idChauff);
