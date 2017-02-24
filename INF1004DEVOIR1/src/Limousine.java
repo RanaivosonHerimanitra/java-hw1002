@@ -8,7 +8,7 @@ public class Limousine {
 	private  ArrayList<String> numero = new ArrayList<>();
 	private  double reservoir;
 	private  String couleur;
-	private static double compteur;
+	private  double compteur;
 	private  double longTrajet;
 	private int nbPassager;
 	private  ArrayList<String> idChauffeur = new ArrayList<>();

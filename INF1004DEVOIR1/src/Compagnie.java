@@ -1,10 +1,9 @@
 /*
  * Compagnie.java representation de la Compagnie , par Herimanitra RANAIVOSON IINF1004-Devoir1
- * 
  * possede une liste de chauffeurs,
  * limousines et historiques de ses activites(trajets)
  * les donnees de nouvelles reservations sont entrees au clavier
- * 02 exception definies:
+ * 03 exceptions definies:
  * (1) si l'annee d'embauche superieure a l'annee courante
  * (2a) si le reservoir de la limousine est vide (=0.)
  * (2b) si le lieu de depart egal au lieu d arrivee
@@ -24,7 +23,7 @@ public class Compagnie {
 	private  String color;
 	private  Scanner scan;
 	private  String lieuDestination;
-	private double reservoir,longTrjet;
+	private double reservoir,kmDep, longTrjet;
 	private int nbpass;
 	
 	ArrayList<Chauffeur> chauffeurList ;
@@ -38,7 +37,7 @@ public class Compagnie {
 	{
 		// initialisation pour tester les specs du devoir:
 		chauffeur = new Chauffeur("Eric","Jean","2012","2900 Fortin");
-		trajet = new Trajet(chauffeur.getIdentifiant(),"shawinigan","Quebec city",10.);
+		trajet = new Trajet(chauffeur.getIdentifiant(),"shawinigan","Quebec city",50000,10.);
 		limousine = new Limousine(chauffeur.getIdentifiant(),"5619TBC",95,"bleu",2,10);
 		
 		limousineList= new ArrayList<Limousine>();
@@ -77,6 +76,8 @@ public class Compagnie {
 		}
 		System.out.println("Entrez la couleur de la limousine: "); 
 		color = scan.nextLine();	
+		System.out.println("Entrez le kilometrage de la limousine: "); 
+		kmDep = Double.parseDouble(scan.nextLine());	
 		System.out.println("Entrez la capacite du reservoir: "); 
 		reservoir =Double.parseDouble( scan.nextLine());
 		System.out.println("Entrez la longeur du trajet en km: "); 
@@ -103,7 +104,7 @@ public class Compagnie {
 		Chauffeur chauffeur = new Chauffeur(chauffeurNom,chauffeurPrenom,anneeEmbauche,lieuDestination);
 		String identifiantChauffeur = chauffeur.getIdentifiant(); 
 		//attribution du trajet au chauffeur:
-		Trajet trajet = new Trajet(identifiantChauffeur,lieuDepart, lieuDestination,longTrjet);
+		Trajet trajet = new Trajet(identifiantChauffeur,lieuDepart, lieuDestination,kmDep,longTrjet);
 		try {
 			Limousine limousine = new Limousine(identifiantChauffeur,immatriculation, reservoir, color,nbpass, longTrjet);	
 			//save trip data:
@@ -145,6 +146,7 @@ public class Compagnie {
 	//-----------------------------------
 	public void findLimousineByChauffeur(String nom, String prenom, String annee)
 	{
+		//construction de ID:
 		String idChauff=nom.substring(0,3) + prenom.charAt(0) + annee.substring(2,4) ;
 		boolean hasDrived=false;
 		for ( int k=0; k<limousineList.size();k++)
@@ -179,15 +181,18 @@ public class Compagnie {
 			ArrayList<String> lieuDep=  trajetHistorique.get(k).getLieuDepart();
 			ArrayList<String> lieuDest=  trajetHistorique.get(k).getLieuDestination();
 			List<Double> longr = trajetHistorique.get(k).getLongueurTrajet();
+			List<Double> kDep = trajetHistorique.get(k).getkmDepart();
+			List<Double> kArr = trajetHistorique.get(k).getkmArrive();
 			int mysize = chauff.size();
 			for (int u=0; u<mysize ;u++)
 			{
 				String mymsg="Le trajet de " + lieuDep.get(u) + " a " + lieuDest.get(u);
 				mymsg += " d\'une longueur de " + longr.get(u) + " km";
 				mymsg += " a ete effectue par le chauffeur ID: " + chauff.get(u) ;
+				mymsg += ", le kilometrage de depart de la limousine etait de: " + kDep.get(u);
+				mymsg +=", apres ce trajet, il est de: "+ kArr.get(u);
 				System.out.println(mymsg);
 			}
 		}
 	}
-	
 }
