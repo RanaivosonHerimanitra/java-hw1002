@@ -1,55 +1,69 @@
+import java.util.Scanner;
+
 /*
  * Test.java,  par Herimanitra RANAIVOSON
  * permet de tester les specs du devoir1 INF1004
  * avec les exceptions definies a Compagnie.java
  */
 public class CompagnieTest {
-
-	public static void main(String[] args) throws InconsistentTrajet, ImmatriculationNullException 
+	private static Scanner scan;
+	public static void main(String[] args) throws InconsistentTrajet, ImmatriculationNullException, EmptyLimousineException, InconsistentYear 
 	{
 		Compagnie compagnie;
-		try {
-			compagnie = new Compagnie();
-			compagnie.makeReservation();
-			compagnie.makeTrip();
-			compagnie.displayConfirmationMsg();
+		compagnie = new Compagnie();
+		boolean record= true;
+		while (record)
+		{
+			try 
+			{
+				compagnie.makeReservation();
+				compagnie.makeTrip();
+				compagnie.displayConfirmationMsg();				
+			} 
+			catch (InconsistentYear e2) {
+				e2.printStackTrace();
+			}
+			catch (InconsistentTrajet e3) {
+				e3.printStackTrace();
+			}
+			catch (ImmatriculationNullException e4) {
+				e4.printStackTrace();
+			}
 			
-			System.out.println("******************************************************************");
-			System.out.println("Test de la recherche Limousine avec quelques chauffeurs par defaut");
-			
-			System.out.println("******************************************************************");
-			System.out.println("Cherche la limousine du chauffeur qui a ete defini par defaut:");
-			compagnie.findLimousineByChauffeur("Eric", "Jean","2012");
-			System.out.println("******************************************************************");
-			
-			System.out.println("Cherche un meme nom prenom qu\'un chauffeur dans la base mais different annees embauches:");
-			compagnie.findLimousineByChauffeur("Eric", "Jean","2011");
-			System.out.println("******************************************************************");
-			
-			System.out.println("Cherche nom et prenom qui ne sont pas encore enregistre:");
-			compagnie.findLimousineByChauffeur("Xavier", "peter","2011");
-			System.out.println("******************************************************************");
-			
-			System.out.println("Cherche la limousine du chauffeur qui vient d etre entre au clavier");
-			compagnie.findLimousineByChauffeur(compagnie.getLastEnteredNom(),compagnie.getLastEnteredPrenom(),compagnie.getLastEnteredAnneeEmbauche());
-			
-			
-			System.out.println("************************************************************");
-			System.out.println("************CARACTERISTIQUES DES TRAJETS EFFECTUES**********");
-			compagnie.getAllTrajet();
-			
+			///////////////////////////////////////////////////////////////////////
+			System.out.println("Voulez-vous selectionner un chauffeur pour connaitre les limousines qu\'il a conduit? (Oui:o ou Non:n)");
+			scan = new Scanner(System.in);
+			String lookUp= scan.nextLine();
+			if ( lookUp.equals("o") )
+			{
+				System.out.println("Entrez le nom du chauffeur: "); 
+				String name = scan.nextLine();	
+				System.out.println("Entrez son prenom: "); 
+				String prenom = scan.nextLine();	
+				System.out.println("Entrez sa date embauche: "); 
+				String mydate =scan.nextLine();
+				compagnie.findLimousineByChauffeur(name,prenom,mydate);
+			}
+			//caracteristiques trajet ////////////////////////
+			System.out.println("Voulez-vous afficher toutes les caractéristiques des trajets effectués\n ainsi que les caractéristiques des limousines utilisées? (Oui:o ou Non:n)");
+			scan = new Scanner(System.in);
+			String charact= scan.nextLine();
+			if ( charact.equals("o") )
+			{
+				compagnie.getAllTrajet();
+			}
+			///////////////////enregistrement /////////////////////////////////
+			System.out.println("Voulez-vous continuer à enregistrer (attribution d\'un chauffeur et d\'un trajet)? (Oui:o ou Non:n)");
+			scan = new Scanner(System.in);
+			String decision= scan.nextLine();
+			switch (decision) {
+			case "o":
+				record=true;
+				break;
+			case "n":
+				record= false;	
+				break;
+			}
 		} 
-		catch (EmptyLimousineException e1) {			
-			e1.printStackTrace();
-		}
-		catch (InconsistentYear e2) {
-			e2.printStackTrace();
-		}
-		catch (InconsistentTrajet e3) {
-			e3.printStackTrace();
-		}
-		catch (ImmatriculationNullException e4) {
-			e4.printStackTrace();
-		}
 	}
 }

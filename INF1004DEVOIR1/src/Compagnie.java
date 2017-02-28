@@ -58,7 +58,7 @@ public class Compagnie {
 	{
 		
 		scan = new Scanner(System.in);  
-		System.out.println("Entrez le nom du chauffeur: "); 
+		System.out.println("Entrez le nom du chauffeur (pour la reservation): "); 
 		chauffeurNom = scan.nextLine();
 		System.out.println("Entrez le prenom du chauffeur: "); 
 		chauffeurPrenom = scan.nextLine();
