@@ -12,7 +12,9 @@ public class Limousine {
 	private  double longTrajet;
 	private int nbPassager;
 	private  ArrayList<String> idChauffeur = new ArrayList<>();
-	 
+	private  ArrayList<String> nomChauffeur = new ArrayList<>();
+	private  ArrayList<String> prenomChauffeur = new ArrayList<>();
+	  
 	// Constructor:
 	public Limousine (String idChauff,String num,double re, String color,int nb,double lgTrajet) throws EmptyLimousineException
 	{
@@ -35,6 +37,18 @@ public class Limousine {
 		return idChauffeur;
 		
 	}
+	public ArrayList<String> getNomChauffeur() 
+	{
+		return nomChauffeur;
+		
+	}
+	public ArrayList<String> getPrenomChauffeur() 
+	{
+		return prenomChauffeur;
+		
+	}
+	
+	
 	public ArrayList<String> getImmatriculation()
 	{
 		return numero;

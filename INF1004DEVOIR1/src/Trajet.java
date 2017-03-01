@@ -13,6 +13,7 @@ public class Trajet {
 	private  ArrayList<String> lieuDestination= new ArrayList<>();
 	private  List<Double> longeurTrajet= new ArrayList<Double>();
 	private  ArrayList<String> idChauffeur= new ArrayList<>();
+	
 	private  ArrayList<Double> kmDepart= new ArrayList<>();
 	private  ArrayList<Double> kmArrive= new ArrayList<>();
 	

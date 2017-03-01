@@ -10,8 +10,11 @@
  * (3) l immatriculation ne doit pas etre laisser vide
 */
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Compagnie {
 	
@@ -37,8 +40,9 @@ public class Compagnie {
 	{
 		// initialisation pour tester les specs du devoir:
 		chauffeur = new Chauffeur("Eric","Jean","2012","2900 Fortin");
-		trajet = new Trajet(chauffeur.getIdentifiant(),"shawinigan","Quebec city",50000,10.);
-		limousine = new Limousine(chauffeur.getIdentifiant(),"5619TBC",95,"bleu",2,10);
+		String id = "Eric".substring(0,3) + "Jean".charAt(0) + "2012".substring(2,4);
+		trajet = new Trajet(id,"shawinigan","Quebec city",50000,10.);
+		limousine = new Limousine(id,"5619TBC",95,"bleu",2,10);
 		
 		limousineList= new ArrayList<Limousine>();
 		trajetHistorique= new ArrayList<Trajet>();		
@@ -54,16 +58,28 @@ public class Compagnie {
 	//----------------------------------------------
 	//allow us to enter data from a user reservation
 	//----------------------------------------------
-	public void makeReservation() throws ImmatriculationNullException 
+	public void makeReservation(String indexChauff) throws ImmatriculationNullException 
 	{
 		
 		scan = new Scanner(System.in);  
-		System.out.println("Entrez le nom du chauffeur (pour la reservation): "); 
-		chauffeurNom = scan.nextLine();
-		System.out.println("Entrez le prenom du chauffeur: "); 
-		chauffeurPrenom = scan.nextLine();
-		System.out.println("Entrez l\'annee d`'embauche du chauffeur: "); 
-		anneeEmbauche = scan.nextLine() ;
+		
+		//si chauffeur entre au clavier:
+		if ( indexChauff.equals("") )
+		{
+			System.out.println("Entrez le nom du chauffeur (pour la reservation): "); 
+			chauffeurNom = scan.nextLine();
+			System.out.println("Entrez le prenom du chauffeur: "); 
+			chauffeurPrenom = scan.nextLine();
+			System.out.println("Entrez l\'annee d`'embauche du chauffeur: "); 
+			anneeEmbauche = scan.nextLine() ;
+		//sinon recuperation d'un chauffeur existant:
+		//puis assignation au trajet qui doit etre defini:
+		} else {
+			chauffeurNom=getchauffeurNomById(indexChauff);
+			chauffeurPrenom=getchauffeurPrenomById(indexChauff);
+			anneeEmbauche=getchauffeurAnneeEmbaucheById(indexChauff);
+			System.out.println(chauffeurNom + " " + chauffeurPrenom + " " + anneeEmbauche );
+		}
 		System.out.println("Entrez le lieu de depart: "); 
 		lieuDepart = scan.nextLine();		
 		System.out.println("Entrez le lieu de destination: "); 
@@ -85,13 +101,75 @@ public class Compagnie {
 		System.out.println("Entrez le nombre de passagers: "); 
 		nbpass =Integer.parseInt( scan.nextLine());	
 	}
-	
+	// get prenom chauffeur by Id 
+	private String getchauffeurPrenomById(String indexChauff) {
+		
+		ArrayList<String> idList=new ArrayList<>();
+		ArrayList<String> prenomList=new ArrayList<>();
+		int myindex=-1;
+		for ( int k=0; k<chauffeurList.size();k++)
+		{
+			idList = chauffeurList.get(k).getIdentifiant();
+			prenomList = chauffeurList.get(k).getPrenom();
+			for (int p =0; p<idList.size();p++)
+			{
+				if (idList.get(p).equals(indexChauff))
+				{
+					myindex=p;
+					break; 
+				}
+			}
+		}
+		return prenomList.get(myindex);
+	}
+    // get nom chauffeur by Id chauff:
+	private String getchauffeurNomById (String indexChauff) {
+		ArrayList<String> idList=new ArrayList<>();
+		ArrayList<String> nomList=new ArrayList<>();
+		int myindex=-1;
+		for ( int k=0; k<chauffeurList.size();k++)
+		{
+			idList = chauffeurList.get(k).getIdentifiant();
+			nomList=chauffeurList.get(k).getNom();
+			for (int p =0; p<idList.size();p++)
+			{
+				if (idList.get(p).equals(indexChauff))
+				{
+					myindex=p;
+					break; 
+				}
+			}
+		}
+		return nomList.get(myindex);
+	}
+    // get annee embauche by id chauffeur:
+	private String getchauffeurAnneeEmbaucheById(String indexChauff) {
+		ArrayList<String> idList=new ArrayList<>();
+		ArrayList<String> annee=new ArrayList<>();
+		
+		int myindex=-1;
+		for ( int k=0; k<chauffeurList.size();k++)
+		{
+			idList = chauffeurList.get(k).getIdentifiant();
+			annee=chauffeurList.get(k).getAnneeEmbauche();
+			for (int p =0; p<idList.size();p++)
+			{
+				if (idList.get(p).equals(indexChauff) )
+				{
+					myindex=p;
+					break; 
+				}
+			}
+		}
+		return annee.get(myindex);
+	}
+
 	//----------------------------------------------
 	// message to confirm reservation
 	//----------------------------------------------
 	public void displayConfirmationMsg()
 	{
-		String msgReservation = "Le chauffeur : " + chauffeurNom + " " + chauffeurPrenom + " est reserve pour le trajet de ";
+		String msgReservation = "*Le chauffeur : " + chauffeurNom + " " + chauffeurPrenom + " est reserve pour le trajet de ";
 		msgReservation += lieuDepart + " a " + lieuDestination;
 		System.out.println(msgReservation);
 	}
@@ -102,7 +180,7 @@ public class Compagnie {
 	public void makeTrip() throws InconsistentYear, InconsistentTrajet
 	{
 		Chauffeur chauffeur = new Chauffeur(chauffeurNom,chauffeurPrenom,anneeEmbauche,lieuDestination);
-		String identifiantChauffeur = chauffeur.getIdentifiant(); 
+		String identifiantChauffeur = chauffeurNom.substring(0,3) + chauffeurPrenom.charAt(0) + anneeEmbauche.substring(2,4);
 		//attribution du trajet au chauffeur:
 		Trajet trajet = new Trajet(identifiantChauffeur,lieuDepart, lieuDestination,kmDep,longTrjet);
 		try {
@@ -166,12 +244,37 @@ public class Compagnie {
 		}
 		if (hasDrived == false )
 		{
-			System.out.println("Aucune historique de trajets pour: " + idChauff);
+			System.out.println("*Aucune historique de trajets pour: " + idChauff);
 		}
 	}
-	
+	//
+	// retrieve List of existing  chauffeur
+	//
+	public void getListChauffeur()
+	{
+		ArrayList<String> chauff=new ArrayList<>();
+		ArrayList<String> Allchauff=new ArrayList<>();
+		for ( int k=0; k<trajetHistorique.size();k++)
+		{
+			chauff = trajetHistorique.get(k).getIdChauffeur();
+			for (int i=0;i < chauff.size(); i++)
+			{
+				Allchauff.add(chauff.get(i));
+			}
+		}
+		//unique:
+		Set<String> chauffUnique = new HashSet<>(Allchauff);
+		List<String> mylistchauff = new ArrayList<>(chauffUnique);
+		for ( int i=0; i<mylistchauff.size();i++)
+		{
+		System.out.println("Taper "+ mylistchauff.get(i) + " au clavier pour le chauffeur d\'ID " + mylistchauff.get(i) );	
+		}
+		
+		
+	}
 	//----------------------------------------------
 	//retrieve data related to a given Trajet ....
+	// and display nice message to the screen
 	//----------------------------------------------
 	public void getAllTrajet()
 	{
@@ -186,11 +289,11 @@ public class Compagnie {
 			int mysize = chauff.size();
 			for (int u=0; u<mysize ;u++)
 			{
-				String mymsg="Le trajet de " + lieuDep.get(u) + " a " + lieuDest.get(u);
-				mymsg += " d\'une longueur de " + longr.get(u) + " km";
-				mymsg += " a ete effectue par le chauffeur ID: " + chauff.get(u) ;
-				mymsg += ", le kilometrage de depart de la limousine etait de: " + kDep.get(u);
-				mymsg +=", apres ce trajet, il est de: "+ kArr.get(u);
+				String mymsg="*Le trajet de " + lieuDep.get(u) + " pour " + lieuDest.get(u) +"\n";
+				mymsg += " d\'une longueur de " + longr.get(u) + " km" +"\n";
+				mymsg += " a ete effectue par le chauffeur ID: " + chauff.get(u) +"\n" ;
+				mymsg += ", le kilometrage de depart de la limousine etait de: " + kDep.get(u) +"\n";
+				mymsg +=", apres ce trajet, il est de: "+ kArr.get(u) +"\n";
 				System.out.println(mymsg);
 			}
 		}

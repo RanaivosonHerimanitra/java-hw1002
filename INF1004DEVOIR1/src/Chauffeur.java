@@ -4,15 +4,16 @@
  * avec setIdentifiant
  */
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Chauffeur 
 {
-	private  String nom;
-	private  String prenom;
-	private  String anneeEmbauche;
+	private  ArrayList<String> nom= new ArrayList<>();
+	private  ArrayList<String> prenom= new ArrayList<>();
+	private  ArrayList<String>  anneeEmbauche= new ArrayList<>();
 	private  String adresse;
-	private  String identifiant;
+	private  ArrayList<String> identifiant= new ArrayList<>();
 	private  String trajet;
 	private final int MINYEAR=1960;
 	
@@ -35,34 +36,34 @@ public class Chauffeur
 	//setters:
 	public void setNom(String value)
 	{
-		nom= value;
+		nom.add(value);
 	}
 	public void setPrenom(String value)
 	{
-		prenom= value;
+		prenom.add(value);
 	}
 	public void setAnnee(String value)
 	{
-		anneeEmbauche= value;
+		anneeEmbauche.add(value);
 	}
 	public void setIdentifiant (String nom, String prenom, String annee)
 	{
-		identifiant= nom.substring(0,3) + prenom.charAt(0) + annee.substring(2,4) ;
+		identifiant.add(nom.substring(0,3) + prenom.charAt(0) + annee.substring(2,4));
 	}
 	//les getters:
-	public String getIdentifiant ()
+	public ArrayList<String> getIdentifiant ()
 	{
 		return identifiant;
 	}
-	public String getNom ()
+	public ArrayList<String> getNom ()
 	{
 		return nom;
 	}
-	public String getPrenom ()
+	public ArrayList<String> getPrenom ()
 	{
 		return prenom;
 	}
-	public String getAnneeEmbauche ()
+	public ArrayList<String> getAnneeEmbauche ()
 	{
 		return anneeEmbauche;
 	}
