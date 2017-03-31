@@ -1,0 +1,1 @@
+Exécuter `InfixApp.java` pour voir le programme
